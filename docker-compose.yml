@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  koa-socket-app:
+    build: .
+    container_name: koa-socket-app
+    ports:
+      - "29061:29061"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
+      - PNPM_CONFIG_REGISTRY=https://registry.npmmirror.com
+    restart: unless-stopped
+    dns:
+      - 8.8.8.8
+      - 114.114.114.114 
